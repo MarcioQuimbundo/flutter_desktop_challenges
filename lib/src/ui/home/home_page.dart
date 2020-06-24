@@ -323,7 +323,7 @@ class HomePage extends StatelessWidget {
                                   ),
                                   child: Center(
                                       child: Text(
-                                    "PAY (0.00)",
+                                    "PAY (18.85)",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w600,
