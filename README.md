@@ -1,7 +1,7 @@
 # Libra Merchant Desktop App Made with Flutter and MobX
 
 ## ScreenShot:
-<img  height="480px" style="margin-right:10px;" src="assets/screenshot/0.jpg">
+<img  height="480px" style="margin-right:10px;" src="assets/screenshot/0.PNG">
 
 ## The main design was taken from this site:
 https://www.libracoffee.io/
