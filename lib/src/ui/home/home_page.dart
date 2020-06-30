@@ -228,7 +228,7 @@ class HomePage extends StatelessWidget {
                             child: TextField(
                               style: TextStyle(color: Colors.white),
                               decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.all(10),
+                                  contentPadding: EdgeInsets.all(0),
                                   fillColor: Colors.white12,
                                   prefixIcon: Icon(
                                     Icons.search,
@@ -244,6 +244,9 @@ class HomePage extends StatelessWidget {
                                       borderSide: BorderSide.none),
                                   hintText: "Search"),
                             )),
+                        SizedBox(
+                          height: 15,
+                        ),
                         Container(
                           margin: EdgeInsets.symmetric(horizontal: 25),
                           padding:
@@ -278,6 +281,9 @@ class HomePage extends StatelessWidget {
                           icon: Icons.format_list_numbered,
                           title: "RoadMaps",
                         ),
+                        SizedBox(
+                          height: 15,
+                        ),
                         Container(
                           margin: EdgeInsets.symmetric(horizontal: 25),
                           padding:
@@ -306,6 +312,9 @@ class HomePage extends StatelessWidget {
                           active: false,
                           icon: Icons.border_all,
                           title: "Boards",
+                        ),
+                        SizedBox(
+                          height: 15,
                         ),
                         Container(
                           margin: EdgeInsets.symmetric(horizontal: 25),
@@ -368,7 +377,7 @@ class MenuDarkTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 5, horizontal: 25),
-      padding: EdgeInsets.only(top: 15, bottom: 15, left: 25),
+      padding: EdgeInsets.only(top: 12, bottom: 12, left: 25),
       decoration: BoxDecoration(
           color: active ? Color(0xFF0F1736) : Colors.transparent,
           borderRadius: BorderRadius.circular(10)),
