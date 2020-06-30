@@ -209,7 +209,7 @@ class HomePage extends StatelessWidget {
               child: Stack(
                 children: [
                   Container(
-                    width: 260,
+                    width: 240,
                     height: MediaQuery.of(context).size.height,
                     margin: EdgeInsets.symmetric(vertical: 30),
                     decoration: BoxDecoration(
@@ -218,6 +218,121 @@ class HomePage extends StatelessWidget {
                           bottomLeft: Radius.circular(15),
                           topLeft: Radius.circular(15),
                         )),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                            alignment: Alignment.center,
+                            margin:
+                                EdgeInsets.only(top: 20, left: 25, right: 25),
+                            child: TextField(
+                              style: TextStyle(color: Colors.white),
+                              decoration: InputDecoration(
+                                  contentPadding: EdgeInsets.all(10),
+                                  fillColor: Colors.white12,
+                                  prefixIcon: Icon(
+                                    Icons.search,
+                                    color: Colors.white12,
+                                  ),
+                                  hintStyle: TextStyle(
+                                      color: Colors.white12, fontSize: 14),
+                                  focusColor: Colors.transparent,
+                                  filled: true,
+                                  border: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(10)),
+                                      borderSide: BorderSide.none),
+                                  hintText: "Search"),
+                            )),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 25),
+                          padding:
+                              EdgeInsets.only(top: 15, bottom: 15, left: 25),
+                          decoration: BoxDecoration(
+                              color: Colors.transparent,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Text(
+                            "MAIN APP",
+                            textAlign: TextAlign.start,
+                            style:
+                                TextStyle(color: Colors.white24, fontSize: 12),
+                          ),
+                        ),
+                        MenuDarkTile(
+                          active: false,
+                          icon: Icons.dashboard,
+                          title: "Dashboard",
+                        ),
+                        MenuDarkTile(
+                          active: true,
+                          icon: Icons.access_time,
+                          title: "Daily Status",
+                        ),
+                        MenuDarkTile(
+                          active: false,
+                          icon: Icons.border_all,
+                          title: "Boards",
+                        ),
+                        MenuDarkTile(
+                          active: false,
+                          icon: Icons.format_list_numbered,
+                          title: "RoadMaps",
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 25),
+                          padding:
+                              EdgeInsets.only(top: 15, bottom: 15, left: 25),
+                          decoration: BoxDecoration(
+                              color: Colors.transparent,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Text(
+                            "WORK FLOW",
+                            textAlign: TextAlign.start,
+                            style:
+                                TextStyle(color: Colors.white24, fontSize: 12),
+                          ),
+                        ),
+                        MenuDarkTile(
+                          active: false,
+                          icon: Icons.dashboard,
+                          title: "Dashboard",
+                        ),
+                        MenuDarkTile(
+                          active: false,
+                          icon: Icons.access_time,
+                          title: "Daily Status",
+                        ),
+                        MenuDarkTile(
+                          active: false,
+                          icon: Icons.border_all,
+                          title: "Boards",
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 25),
+                          padding:
+                              EdgeInsets.only(top: 15, bottom: 15, left: 25),
+                          decoration: BoxDecoration(
+                              color: Colors.transparent,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Text(
+                            "SETTINGS",
+                            textAlign: TextAlign.start,
+                            style:
+                                TextStyle(color: Colors.white24, fontSize: 12),
+                          ),
+                        ),
+                        MenuDarkTile(
+                          active: false,
+                          icon: Icons.dashboard,
+                          title: "Dashboard",
+                        ),
+                        MenuDarkTile(
+                          active: false,
+                          icon: Icons.access_time,
+                          title: "Daily Status",
+                        ),
+                      ],
+                    ),
                   ),
                   Positioned(
                     right: 0,
@@ -238,6 +353,42 @@ class HomePage extends StatelessWidget {
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class MenuDarkTile extends StatelessWidget {
+  const MenuDarkTile({this.active, this.icon, this.title});
+  final bool active;
+  final IconData icon;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 5, horizontal: 25),
+      padding: EdgeInsets.only(top: 15, bottom: 15, left: 25),
+      decoration: BoxDecoration(
+          color: active ? Color(0xFF0F1736) : Colors.transparent,
+          borderRadius: BorderRadius.circular(10)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Icon(
+            icon,
+            color: active ? Color(0xFF37D2F8) : Colors.white24,
+            size: 18,
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Text(
+            title ?? "",
+            style: TextStyle(
+                color: active ? Colors.white : Colors.white24, fontSize: 12),
+          )
+        ],
       ),
     );
   }
