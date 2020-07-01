@@ -110,88 +110,80 @@ class HomePage extends StatelessWidget {
                           )
                         ],
                       ),
-                      Center(
-                        child: Container(
-                          width: 60,
-                          height: 60,
-                          margin: EdgeInsets.only(top: 10),
-                          decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black38,
-                                    blurRadius: 15.0,
-                                    offset: Offset(0.0, 0.75))
-                              ],
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                    "https://pro2-bar-s3-cdn-cf3.myportfolio.com/f4019b165872977ad4cf3c425585d430/e4793eff-8b30-47cf-a70b-a3acf3c6bc97_rw_1920.jpg?h=2cd2a09ce80febccf22d94b33e6c752b",
-                                  ),
-                                  fit: BoxFit.cover),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                        ),
+                      Container(
+                        width: 60,
+                        height: 60,
+                        margin: EdgeInsets.only(top: 10),
+                        decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black38,
+                                  blurRadius: 15.0,
+                                  offset: Offset(0.0, 0.75))
+                            ],
+                            image: DecorationImage(
+                                image: NetworkImage(
+                                  "https://pro2-bar-s3-cdn-cf3.myportfolio.com/f4019b165872977ad4cf3c425585d430/e4793eff-8b30-47cf-a70b-a3acf3c6bc97_rw_1920.jpg?h=2cd2a09ce80febccf22d94b33e6c752b",
+                                ),
+                                fit: BoxFit.cover),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
                       ),
-                      Center(
-                        child: Container(
-                          width: 60,
-                          height: 60,
-                          margin: EdgeInsets.only(top: 10),
-                          decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black38,
-                                    blurRadius: 15.0,
-                                    offset: Offset(0.0, 0.75))
-                              ],
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                    "https://slackhq.com/wp-content/uploads/2020/03/2019-02_Staff_Slack1_hero-1.jpg?w=460",
-                                  ),
-                                  fit: BoxFit.cover),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                        ),
+                      Container(
+                        width: 60,
+                        height: 60,
+                        margin: EdgeInsets.only(top: 10),
+                        decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black38,
+                                  blurRadius: 15.0,
+                                  offset: Offset(0.0, 0.75))
+                            ],
+                            image: DecorationImage(
+                                image: NetworkImage(
+                                  "https://slackhq.com/wp-content/uploads/2020/03/2019-02_Staff_Slack1_hero-1.jpg?w=460",
+                                ),
+                                fit: BoxFit.cover),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
                       ),
-                      Center(
-                        child: Container(
-                          width: 60,
-                          height: 60,
-                          margin: EdgeInsets.only(top: 10),
-                          decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black38,
-                                    blurRadius: 15.0,
-                                    offset: Offset(0.0, 0.75))
-                              ],
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                    "https://slackhq.com/wp-content/uploads/2020/03/2019-02_Staff_Slack1_hero-1.jpg?w=460",
-                                  ),
-                                  fit: BoxFit.cover),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                        ),
+                      Container(
+                        width: 60,
+                        height: 60,
+                        margin: EdgeInsets.only(top: 10),
+                        decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black38,
+                                  blurRadius: 15.0,
+                                  offset: Offset(0.0, 0.75))
+                            ],
+                            image: DecorationImage(
+                                image: NetworkImage(
+                                  "https://slackhq.com/wp-content/uploads/2020/03/2019-02_Staff_Slack1_hero-1.jpg?w=460",
+                                ),
+                                fit: BoxFit.cover),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
                       ),
-                      Center(
-                        child: Container(
-                          width: 60,
-                          height: 60,
-                          margin: EdgeInsets.only(top: 20),
-                          decoration: BoxDecoration(
-                              color: Color(0xFF37D2F8),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black38,
-                                    blurRadius: 15.0,
-                                    offset: Offset(0.0, 0.75))
-                              ],
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          child: Icon(
-                            Icons.add,
-                            color: Colors.white,
-                          ),
+                      Container(
+                        width: 60,
+                        height: 60,
+                        margin: EdgeInsets.only(top: 20),
+                        decoration: BoxDecoration(
+                            color: Color(0xFF37D2F8),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black38,
+                                  blurRadius: 15.0,
+                                  offset: Offset(0.0, 0.75))
+                            ],
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                        child: Icon(
+                          Icons.add,
+                          color: Colors.white,
                         ),
                       ),
                     ],
@@ -344,13 +336,98 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    right: 0,
+                    left: 228,
                     child: Container(
-                      width: MediaQuery.of(context).size.width - 350,
+                      width: 135,
                       height: MediaQuery.of(context).size.height - 60,
                       margin: EdgeInsets.symmetric(vertical: 30),
                       decoration: BoxDecoration(
                           color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(15),
+                            topLeft: Radius.circular(15),
+                          )),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Container(
+                            margin: EdgeInsets.symmetric(vertical: 10),
+                            child: Text(
+                              "TEAM",
+                              style: TextStyle(color: Color(0xFFC1C5D2)),
+                            ),
+                          ),
+                          Container(
+                            width: 50,
+                            height: 50,
+                            margin: EdgeInsets.only(bottom: 20),
+                            decoration: BoxDecoration(
+                                color: Color(0xFFD6E4ED),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(50))),
+                            child: Center(
+                                child: Text(
+                              "M",
+                              style: TextStyle(
+                                  color: GlobalConst.secondColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
+                            )),
+                          ),
+                          Divider(),
+                          SizedBox(
+                            height: 25,
+                          ),
+                          UserPhotoBorderGradient(
+                              isGradient: true,
+                              firstColor: Colors.yellow,
+                              secondColor: Colors.redAccent),
+                          UserPhotoBorderGradient(
+                            isGradient: true,
+                            firstColor: Color(0xFF37D2F8),
+                            secondColor: Colors.blue,
+                          ),
+                          UserPhotoBorderGradient(
+                            isGradient: false,
+                            firstColor: Color(0xFF37D2F8),
+                            secondColor: Colors.blue,
+                          ),
+                          UserPhotoBorderGradient(
+                            isGradient: false,
+                            firstColor: Color(0xFF37D2F8),
+                            secondColor: Colors.blue,
+                          ),
+                          UserPhotoBorderGradient(
+                            isGradient: false,
+                            firstColor: Color(0xFF37D2F8),
+                            secondColor: Colors.blue,
+                          ),
+                          Container(
+                            width: 50,
+                            height: 50,
+                            decoration: BoxDecoration(
+                                color: GlobalConst.primaryColor,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(50))),
+                            child: Icon(
+                              Icons.add,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    right: 0,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width - 471,
+                      height: MediaQuery.of(context).size.height - 60,
+                      margin: EdgeInsets.symmetric(vertical: 30),
+                      decoration: BoxDecoration(
+                          color: Color(0xFFF1F7FB),
                           borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(15),
                             topLeft: Radius.circular(15),
@@ -362,6 +439,52 @@ class HomePage extends StatelessWidget {
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class UserPhotoBorderGradient extends StatelessWidget {
+  final bool isGradient;
+  final Color firstColor;
+  final Color secondColor;
+  UserPhotoBorderGradient({this.isGradient, this.firstColor, this.secondColor});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 20),
+      child: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.all(2.5),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [
+                isGradient ? firstColor : Colors.transparent,
+                isGradient ? secondColor : Colors.transparent
+              ]),
+              borderRadius: BorderRadius.circular(32),
+            ),
+            child: Container(
+              height: 50,
+              width: 50,
+              decoration: BoxDecoration(
+                color: Color(0xFFD6E4ED),
+                image: DecorationImage(
+                  image: NetworkImage(
+                      "https://avatars2.githubusercontent.com/u/29952508?s=460&u=622321f493deddbb578e7837dc49602402f0be9e&v=4"),
+                ),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(50),
+                ),
+              ),
+            ),
+          ),
+          Text(
+            "Márcio",
+            style: TextStyle(color: isGradient ? secondColor : Colors.grey),
+          )
+        ],
       ),
     );
   }
