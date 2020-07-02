@@ -432,6 +432,140 @@ class HomePage extends StatelessWidget {
                             bottomLeft: Radius.circular(15),
                             topLeft: Radius.circular(15),
                           )),
+                      child: Container(
+                        margin: EdgeInsets.only(left: 125),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 40,
+                            ),
+                            Row(
+                              children: [
+                                NotificationTopMenu(
+                                  icon: Icons.check_circle,
+                                  title: "78% STATUSES DONE",
+                                  color: Colors.green,
+                                ),
+                                NotificationTopMenu(
+                                  icon: Icons.person_outline,
+                                  title: "Barteck is working Today remotely",
+                                  color: Colors.black,
+                                ),
+                                NotificationTopMenu(
+                                  icon: Icons.timer,
+                                  title: "Last seen Yesterday, 17:24",
+                                  color: Colors.black,
+                                ),
+                                Spacer(),
+                                NotificationTopMenu(
+                                  icon: Icons.touch_app,
+                                  title: "Ping Bartek",
+                                  color: GlobalConst.primaryColor,
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 50,
+                            ),
+                            Row(
+                              children: [
+                                Container(
+                                  height: 110,
+                                  width: 100,
+                                  decoration: BoxDecoration(
+                                      color: Colors.transparent,
+                                      image: DecorationImage(
+                                          image: NetworkImage(
+                                              "https://avatars2.githubusercontent.com/u/29952508?s=460&u=622321f493deddbb578e7837dc49602402f0be9e&v=4")),
+                                      border: Border.all(
+                                          color: Colors.white, width: 5),
+                                      borderRadius: BorderRadius.circular(6)),
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "Márcio Quimbundo",
+                                          style: TextStyle(
+                                              fontSize: 24,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        SizedBox(
+                                          width: 70,
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 15, vertical: 5),
+                                          decoration: BoxDecoration(
+                                              color: Colors.red.withOpacity(.4),
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                          child: Text(
+                                            "NO STATUS TODAY",
+                                            style: TextStyle(
+                                                color: Colors.red,
+                                                fontSize: 12),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    Text(
+                                      "Software Engineer",
+                                      style: TextStyle(color: Colors.black54),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    NotificationTopMenu(
+                                      icon: Icons.pin_drop,
+                                      title: "Asseco ePromak Next",
+                                    )
+                                  ],
+                                ),
+                                Spacer(),
+                                Icon(
+                                  Icons.settings,
+                                  color: Colors.black38,
+                                  size: 16,
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(right: 30),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 25, vertical: 8),
+                                  decoration: BoxDecoration(
+                                      color: Color(0xFFFF625C),
+                                      borderRadius: BorderRadius.circular(20)),
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.stop,
+                                        color: Colors.white,
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                        "Stop Daily Status",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 12),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -439,6 +573,37 @@ class HomePage extends StatelessWidget {
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class NotificationTopMenu extends StatelessWidget {
+  final String title;
+  final Color color;
+  final IconData icon;
+
+  const NotificationTopMenu({this.title, this.color, this.icon});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(right: 40),
+      child: Row(
+        children: [
+          Icon(
+            icon,
+            color: color,
+            size: 16,
+          ),
+          SizedBox(
+            width: 5,
+          ),
+          Text(
+            title ?? "",
+            style: TextStyle(color: color, fontSize: 12),
+          )
+        ],
       ),
     );
   }
