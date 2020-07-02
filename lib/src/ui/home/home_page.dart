@@ -562,6 +562,44 @@ class HomePage extends StatelessWidget {
                                   ),
                                 ),
                               ],
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Container(
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.only(right: 30),
+                                    height: MediaQuery.of(context).size.height -
+                                        330,
+                                    decoration: BoxDecoration(
+                                        color: Colors.black,
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
+                                  ),
+                                  Positioned(
+                                    bottom: 0,
+                                    child: ClipPath(
+                                      child: Container(
+                                        height: 110,
+                                        width:
+                                            MediaQuery.of(context).size.height +
+                                                110,
+                                        margin: EdgeInsets.only(right: 30),
+                                        decoration: BoxDecoration(
+                                            color: GlobalConst.primaryColor,
+                                            borderRadius: BorderRadius.only(
+                                                bottomRight:
+                                                    Radius.circular(20),
+                                                bottomLeft:
+                                                    Radius.circular(20))),
+                                      ),
+                                      clipper: BottomVideoClipper(),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             )
                           ],
                         ),
@@ -576,6 +614,30 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
+}
+
+class BottomVideoClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    var path = Path();
+
+    path.lineTo(0.0, size.height);
+
+    path.lineTo(size.width, size.height);
+
+    path.lineTo(size.width, 0);
+
+    path.lineTo(size.width / 2 + 100, 0);
+
+    path.quadraticBezierTo(
+        size.width / 2, size.height - 20, size.width / 2 - 100, 0);
+
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
 
 class NotificationTopMenu extends StatelessWidget {
