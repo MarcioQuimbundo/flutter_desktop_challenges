@@ -574,7 +574,11 @@ class HomePage extends StatelessWidget {
                                     height: MediaQuery.of(context).size.height -
                                         330,
                                     decoration: BoxDecoration(
-                                        color: Colors.black,
+                                        image: DecorationImage(
+                                            image: NetworkImage(
+                                              "https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/291-jir-04656537-nam.jpg?w=800&dpr=1&fit=default&crop=default&auto=format&fm=pjpg&q=75&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=4132baf0565c757f4137c22ab077f584",
+                                            ),
+                                            fit: BoxFit.cover),
                                         borderRadius:
                                             BorderRadius.circular(20)),
                                   ),
@@ -598,6 +602,123 @@ class HomePage extends StatelessWidget {
                                       clipper: BottomVideoClipper(),
                                     ),
                                   ),
+                                  Positioned(
+                                    bottom: 20,
+                                    left: 20,
+                                    child: Row(
+                                      children: [
+                                        FotoUserPotrait(),
+                                        FotoUserPotrait(),
+                                        FotoUserPotrait(),
+                                      ],
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: 20,
+                                    left: 30,
+                                    child: Container(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Your Daily Status for Today",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 16),
+                                          ),
+                                          Text(
+                                            "Call with Teammates",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 14),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: 20,
+                                    right: 70,
+                                    child: Container(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "4 People",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 16),
+                                          ),
+                                          Text(
+                                            "2 missing",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 14),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    bottom: 30,
+                                    left: 450,
+                                    child: Container(
+                                      child: Text(
+                                        "02:35",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 16),
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                      top: 30,
+                                      left: 400,
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 15, vertical: 5),
+                                        decoration: BoxDecoration(
+                                            color: Color(0xFFFFD3A9),
+                                            borderRadius:
+                                                BorderRadius.circular(20)),
+                                        child: Text(
+                                          "ONLY 02:23 LEFT",
+                                          style: TextStyle(
+                                              color: Colors.black87,
+                                              fontSize: 12),
+                                        ),
+                                      )),
+                                  Positioned(
+                                    bottom: 20,
+                                    right: 100,
+                                    child: Container(
+                                      width: 210,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Icon(
+                                            Icons.mic,
+                                            color: Colors.white,
+                                          ),
+                                          Icon(
+                                            Icons.tv,
+                                            color: Colors.white,
+                                          ),
+                                          Icon(
+                                            Icons.volume_up,
+                                            color: Colors.white,
+                                          ),
+                                          Container(
+                                            height: 2,
+                                            width: 50,
+                                            color: Colors.white,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
                             )
@@ -611,6 +732,41 @@ class HomePage extends StatelessWidget {
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class FotoUserPotrait extends StatelessWidget {
+  const FotoUserPotrait({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(left: 10),
+      child: Column(
+        children: [
+          Container(
+            height: 110,
+            width: 100,
+            decoration: BoxDecoration(
+                color: Colors.transparent,
+                image: DecorationImage(
+                    image: NetworkImage(
+                        "https://avatars2.githubusercontent.com/u/29952508?s=460&u=622321f493deddbb578e7837dc49602402f0be9e&v=4")),
+                border: Border.all(color: Colors.white, width: 3),
+                borderRadius: BorderRadius.circular(6)),
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          Text(
+            "Márcio",
+            style: TextStyle(color: Colors.white),
+          )
+        ],
       ),
     );
   }
