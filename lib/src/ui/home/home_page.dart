@@ -1,7 +1,47 @@
-import 'package:flutter/material.dart';
-import 'package:zoom_desktop_flutter/src/cons/global_const.dart';
+import 'dart:math';
 
-class HomePage extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter_reaction_button/flutter_reaction_button.dart';
+import 'package:zoom_desktop_flutter/src/cons/global_const.dart';
+import 'package:zoom_desktop_flutter/src/data/reaction_video_data.dart';
+import 'package:zoom_desktop_flutter/src/ui/home/widgets/profile_photo.dart';
+import 'package:zoom_desktop_flutter/src/ui/home/widgets/sprite_painter.dart';
+
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  int _selectedWorkspacePage = 0;
+  int _selectedMainPage = 0;
+  AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = new AnimationController(
+      vsync: this,
+    );
+    _startAnimation();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _startAnimation() {
+    _controller.stop();
+    _controller.reset();
+    _controller.repeat(
+      period: Duration(seconds: 1),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,143 +69,93 @@ class HomePage extends StatelessWidget {
                       SizedBox(
                         height: 40,
                       ),
-                      Stack(
-                        children: [
-                          Center(
-                            child: Container(
-                              width: 60,
-                              height: 60,
-                              margin: EdgeInsets.only(top: 10),
-                              decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.black38,
-                                        blurRadius: 15.0,
-                                        offset: Offset(0.0, 0.75))
-                                  ],
-                                  image: DecorationImage(
-                                      image: NetworkImage(
-                                          "https://avatars2.githubusercontent.com/u/29952508?s=460&u=622321f493deddbb578e7837dc49602402f0be9e&v=4")),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10))),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) {
+                                return ProfileImageView();
+                              },
                             ),
-                          ),
-                          Positioned(
-                            right: 22,
-                            top: 4,
-                            child: Container(
-                              height: 15,
-                              width: 15,
-                              margin: EdgeInsets.only(bottom: 20),
-                              decoration: BoxDecoration(
-                                  color: Colors.green,
-                                  border: Border.all(
-                                      color: GlobalConst.primaryColor,
-                                      width: 3),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10))),
+                          );
+                        },
+                        child: Stack(
+                          children: [
+                            Center(
+                              child: Hero(
+                                tag: "view-image",
+                                child: Container(
+                                  width: 60,
+                                  height: 60,
+                                  margin: EdgeInsets.only(top: 10),
+                                  decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.black38,
+                                            blurRadius: 15.0,
+                                            offset: Offset(0.0, 0.75))
+                                      ],
+                                      image: DecorationImage(
+                                          image: NetworkImage(
+                                              "https://avatars2.githubusercontent.com/u/29952508?s=460&u=622321f493deddbb578e7837dc49602402f0be9e&v=4")),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(10))),
+                                ),
+                              ),
                             ),
-                          )
-                        ],
+                            Positioned(
+                              right: 22,
+                              top: 4,
+                              child: Container(
+                                height: 15,
+                                width: 15,
+                                margin: EdgeInsets.only(bottom: 20),
+                                decoration: BoxDecoration(
+                                    color: Colors.green,
+                                    border: Border.all(
+                                        color: GlobalConst.primaryColor,
+                                        width: 3),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10))),
+                              ),
+                            )
+                          ],
+                        ),
                       )
                     ],
                   ),
                   Column(
                     children: [
-                      Stack(
-                        children: [
-                          Center(
-                            child: Container(
-                              width: 60,
-                              height: 60,
-                              margin: EdgeInsets.only(top: 10),
-                              decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.black38,
-                                        blurRadius: 15.0,
-                                        offset: Offset(0.0, 0.75))
-                                  ],
-                                  image: DecorationImage(
-                                      image: NetworkImage(
-                                        "https://slackhq.com/wp-content/uploads/2020/03/2019-02_Staff_Slack1_hero-1.jpg?w=460",
-                                      ),
-                                      fit: BoxFit.cover),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10))),
-                            ),
-                          ),
-                          Positioned(
-                            top: 30,
-                            child: Container(
-                              height: 20,
-                              width: 6,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.only(
-                                    bottomRight: Radius.circular(5),
-                                    topRight: Radius.circular(5),
-                                  )),
-                            ),
-                          )
-                        ],
+                      WorkSpaceSelectionCard(
+                        isActive: _selectedWorkspacePage == 0,
+                        image:
+                            "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
+                        onTap: () {
+                          setState(() {
+                            _selectedWorkspacePage = 0;
+                          });
+                        },
                       ),
-                      Container(
-                        width: 60,
-                        height: 60,
-                        margin: EdgeInsets.only(top: 10),
-                        decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black38,
-                                  blurRadius: 15.0,
-                                  offset: Offset(0.0, 0.75))
-                            ],
-                            image: DecorationImage(
-                                image: NetworkImage(
-                                  "https://pro2-bar-s3-cdn-cf3.myportfolio.com/f4019b165872977ad4cf3c425585d430/e4793eff-8b30-47cf-a70b-a3acf3c6bc97_rw_1920.jpg?h=2cd2a09ce80febccf22d94b33e6c752b",
-                                ),
-                                fit: BoxFit.cover),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
+                      WorkSpaceSelectionCard(
+                        isActive: _selectedWorkspacePage == 1,
+                        image:
+                            "https://res.infoq.com/presentations/Dart/en/slides/1.jpg",
+                        onTap: () {
+                          setState(() {
+                            _selectedWorkspacePage = 1;
+                          });
+                        },
                       ),
-                      Container(
-                        width: 60,
-                        height: 60,
-                        margin: EdgeInsets.only(top: 10),
-                        decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black38,
-                                  blurRadius: 15.0,
-                                  offset: Offset(0.0, 0.75))
-                            ],
-                            image: DecorationImage(
-                                image: NetworkImage(
-                                  "https://slackhq.com/wp-content/uploads/2020/03/2019-02_Staff_Slack1_hero-1.jpg?w=460",
-                                ),
-                                fit: BoxFit.cover),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                      ),
-                      Container(
-                        width: 60,
-                        height: 60,
-                        margin: EdgeInsets.only(top: 10),
-                        decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black38,
-                                  blurRadius: 15.0,
-                                  offset: Offset(0.0, 0.75))
-                            ],
-                            image: DecorationImage(
-                                image: NetworkImage(
-                                  "https://slackhq.com/wp-content/uploads/2020/03/2019-02_Staff_Slack1_hero-1.jpg?w=460",
-                                ),
-                                fit: BoxFit.cover),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
+                      WorkSpaceSelectionCard(
+                        isActive: _selectedWorkspacePage == 2,
+                        image:
+                            "https://i.pinimg.com/236x/ca/1f/74/ca1f746d6f232f87fca4e4d94ef6f3ab--app-technology.jpg",
+                        onTap: () {
+                          setState(() {
+                            _selectedWorkspacePage = 2;
+                          });
+                        },
                       ),
                       Container(
                         width: 60,
@@ -254,27 +244,47 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                         MenuDarkTile(
-                          active: false,
+                          active: _selectedMainPage == 0,
+                          onTap: () {
+                            setState(() {
+                              _selectedMainPage = 0;
+                            });
+                          },
                           icon: Icons.dashboard,
                           title: "Dashboard",
                         ),
                         MenuDarkTile(
-                          active: true,
+                          active: _selectedMainPage == 1,
+                          onTap: () {
+                            setState(() {
+                              _selectedMainPage = 1;
+                            });
+                          },
                           icon: Icons.access_time,
                           title: "Daily Status",
                         ),
                         MenuDarkTile(
-                          active: false,
+                          active: _selectedMainPage == 2,
+                          onTap: () {
+                            setState(() {
+                              _selectedMainPage = 2;
+                            });
+                          },
                           icon: Icons.border_all,
                           title: "Boards",
                         ),
                         MenuDarkTile(
-                          active: false,
+                          active: _selectedMainPage == 3,
+                          onTap: () {
+                            setState(() {
+                              _selectedMainPage = 3;
+                            });
+                          },
                           icon: Icons.format_list_numbered,
                           title: "RoadMaps",
                         ),
                         SizedBox(
-                          height: 15,
+                          height: 25,
                         ),
                         Container(
                           margin: EdgeInsets.symmetric(horizontal: 25),
@@ -291,22 +301,37 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                         MenuDarkTile(
-                          active: false,
-                          icon: Icons.dashboard,
-                          title: "Dashboard",
+                          active: _selectedMainPage == 4,
+                          onTap: () {
+                            setState(() {
+                              _selectedMainPage = 4;
+                            });
+                          },
+                          icon: Icons.tv,
+                          title: "Workshops",
                         ),
                         MenuDarkTile(
-                          active: false,
-                          icon: Icons.access_time,
-                          title: "Daily Status",
+                          active: _selectedMainPage == 5,
+                          onTap: () {
+                            setState(() {
+                              _selectedMainPage = 5;
+                            });
+                          },
+                          icon: Icons.camera_alt,
+                          title: "Video Calls",
                         ),
                         MenuDarkTile(
-                          active: false,
-                          icon: Icons.border_all,
-                          title: "Boards",
+                          active: _selectedMainPage == 6,
+                          onTap: () {
+                            setState(() {
+                              _selectedMainPage = 6;
+                            });
+                          },
+                          icon: Icons.filter_drama,
+                          title: "Files",
                         ),
                         SizedBox(
-                          height: 15,
+                          height: 25,
                         ),
                         Container(
                           margin: EdgeInsets.symmetric(horizontal: 25),
@@ -323,14 +348,14 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                         MenuDarkTile(
-                          active: false,
-                          icon: Icons.dashboard,
-                          title: "Dashboard",
-                        ),
-                        MenuDarkTile(
-                          active: false,
-                          icon: Icons.access_time,
-                          title: "Daily Status",
+                          active: _selectedMainPage == 7,
+                          onTap: () {
+                            setState(() {
+                              _selectedMainPage = 7;
+                            });
+                          },
+                          icon: Icons.people,
+                          title: "Team",
                         ),
                       ],
                     ),
@@ -381,28 +406,44 @@ class HomePage extends StatelessWidget {
                             height: 25,
                           ),
                           UserPhotoBorderGradient(
-                              isGradient: true,
-                              firstColor: Colors.yellow,
-                              secondColor: Colors.redAccent),
+                            isGradient: true,
+                            firstColor: Colors.yellow,
+                            secondColor: Colors.redAccent,
+                            photo:
+                                "https://avatars2.githubusercontent.com/u/33294549?s=460&u=c832597c58517e4eb4ad1df0c5c98b0998a973af&v=4",
+                            name: "Pedro",
+                          ),
                           UserPhotoBorderGradient(
                             isGradient: true,
                             firstColor: Color(0xFF37D2F8),
                             secondColor: Colors.blue,
+                            photo:
+                                "https://avatars3.githubusercontent.com/u/20057010?s=460&u=ae95fc706dbf95c4e511d3788bd9026e46f8429a&v=4",
+                            name: "Bráulio",
                           ),
                           UserPhotoBorderGradient(
                             isGradient: false,
                             firstColor: Color(0xFF37D2F8),
                             secondColor: Colors.blue,
+                            photo:
+                                "https://avatars1.githubusercontent.com/u/20504726?s=460&u=9b5bb9e8387dcdc1af2acf8b8fff969e34614fab&v=4",
+                            name: "Eleandro",
                           ),
                           UserPhotoBorderGradient(
                             isGradient: false,
                             firstColor: Color(0xFF37D2F8),
                             secondColor: Colors.blue,
+                            photo:
+                                "https://avatars3.githubusercontent.com/u/47059370?s=460&u=463824a25128c4670f1b1f2022f616d760113c5c&v=4",
+                            name: "Dorivaldo",
                           ),
                           UserPhotoBorderGradient(
                             isGradient: false,
                             firstColor: Color(0xFF37D2F8),
                             secondColor: Colors.blue,
+                            photo:
+                                "https://scontent.flad2-1.fna.fbcdn.net/v/t1.0-9/94114181_2485240251788122_4127078257054973952_o.jpg?_nc_cat=111&_nc_sid=174925&_nc_eui2=AeGMOYLlalLoAabQs5FRz1h8qcHRV20eUsapwdFXbR5SxgD1fyi10yQc1XOmTNIuFN5ptDoal6rHvWaBx_pBOjzq&_nc_ohc=5EYl_sjFBagAX-S9DKw&_nc_ht=scontent.flad2-1.fna&oh=bf94efe3cb18dd729129e72c159e8653&oe=5F2667D2",
+                            name: "Anísio",
                           ),
                           Container(
                             width: 50,
@@ -441,14 +482,20 @@ class HomePage extends StatelessWidget {
                             ),
                             Row(
                               children: [
-                                NotificationTopMenu(
-                                  icon: Icons.check_circle,
-                                  title: "78% STATUSES DONE",
-                                  color: Colors.green,
+                                FlutterReactionButtonCheck(
+                                  onReactionChanged: (reaction, isChecked) {
+                                    print('reaction selected id: 1');
+                                  },
+                                  reactions: facebookReactions,
+                                  initialReaction: defaultInitialReaction,
+                                  selectedReaction: facebookReactions[0],
+                                ),
+                                SizedBox(
+                                  width: 20,
                                 ),
                                 NotificationTopMenu(
                                   icon: Icons.person_outline,
-                                  title: "Barteck is working Today remotely",
+                                  title: "Márcio is working today remotely",
                                   color: Colors.black,
                                 ),
                                 NotificationTopMenu(
@@ -458,10 +505,10 @@ class HomePage extends StatelessWidget {
                                 ),
                                 Spacer(),
                                 NotificationTopMenu(
-                                  icon: Icons.touch_app,
-                                  title: "Ping Bartek",
-                                  color: GlobalConst.primaryColor,
-                                ),
+                                  icon: Icons.check_circle,
+                                  title: "78% STATUSES DONE",
+                                  color: Colors.green,
+                                )
                               ],
                             ),
                             SizedBox(
@@ -524,7 +571,7 @@ class HomePage extends StatelessWidget {
                                     ),
                                     NotificationTopMenu(
                                       icon: Icons.pin_drop,
-                                      title: "Asseco ePromak Next",
+                                      title: "Angola, Luanda",
                                     )
                                   ],
                                 ),
@@ -582,6 +629,25 @@ class HomePage extends StatelessWidget {
                                         borderRadius:
                                             BorderRadius.circular(20)),
                                   ),
+                                  Container(
+                                    margin: EdgeInsets.only(right: 30),
+                                    height: MediaQuery.of(context).size.height -
+                                        330,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        gradient: LinearGradient(
+                                            begin:
+                                                FractionalOffset.bottomCenter,
+                                            end: FractionalOffset.topCenter,
+                                            colors: [
+                                              Colors.transparent,
+                                              Colors.black.withOpacity(.6),
+                                            ],
+                                            stops: [
+                                              0.0,
+                                              1.0
+                                            ])),
+                                  ),
                                   Positioned(
                                     bottom: 0,
                                     child: ClipPath(
@@ -607,9 +673,21 @@ class HomePage extends StatelessWidget {
                                     left: 20,
                                     child: Row(
                                       children: [
-                                        FotoUserPotrait(),
-                                        FotoUserPotrait(),
-                                        FotoUserPotrait(),
+                                        PhotoUserMeeting(
+                                          name: "Pedro",
+                                          image:
+                                              "https://avatars2.githubusercontent.com/u/33294549?s=460&u=c832597c58517e4eb4ad1df0c5c98b0998a973af&v=4",
+                                        ),
+                                        PhotoUserMeeting(
+                                          name: "Bráulio",
+                                          image:
+                                              "https://avatars3.githubusercontent.com/u/20057010?s=460&u=ae95fc706dbf95c4e511d3788bd9026e46f8429a&v=4",
+                                        ),
+                                        PhotoUserMeeting(
+                                          name: "Eleandro",
+                                          image:
+                                              "https://avatars1.githubusercontent.com/u/20504726?s=460&u=9b5bb9e8387dcdc1af2acf8b8fff969e34614fab&v=4",
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -646,7 +724,7 @@ class HomePage extends StatelessWidget {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            "4 People",
+                                            "3 People",
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 16),
@@ -673,6 +751,25 @@ class HomePage extends StatelessWidget {
                                     ),
                                   ),
                                   Positioned(
+                                    bottom: 70,
+                                    left: 410,
+                                    child: CustomPaint(
+                                      painter: SpritePainter(_controller),
+                                      child: Container(
+                                        width: 120,
+                                        height: 120,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(50),
+                                            color: Colors.transparent),
+                                        child: Icon(
+                                          Icons.stop,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
                                       top: 30,
                                       left: 400,
                                       child: Container(
@@ -690,10 +787,10 @@ class HomePage extends StatelessWidget {
                                         ),
                                       )),
                                   Positioned(
-                                    bottom: 20,
+                                    bottom: 50,
                                     right: 100,
                                     child: Container(
-                                      width: 210,
+                                      width: 250,
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -702,9 +799,15 @@ class HomePage extends StatelessWidget {
                                             Icons.mic,
                                             color: Colors.white,
                                           ),
+                                          SizedBox(
+                                            width: 20,
+                                          ),
                                           Icon(
                                             Icons.tv,
                                             color: Colors.white,
+                                          ),
+                                          SizedBox(
+                                            width: 20,
                                           ),
                                           Icon(
                                             Icons.volume_up,
@@ -712,7 +815,7 @@ class HomePage extends StatelessWidget {
                                           ),
                                           Container(
                                             height: 2,
-                                            width: 50,
+                                            width: 90,
                                             color: Colors.white,
                                           )
                                         ],
@@ -737,10 +840,66 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class FotoUserPotrait extends StatelessWidget {
-  const FotoUserPotrait({
-    Key key,
-  }) : super(key: key);
+class WorkSpaceSelectionCard extends StatelessWidget {
+  final bool isActive;
+  final Function onTap;
+  final String image;
+  WorkSpaceSelectionCard({this.isActive = false, this.onTap, this.image});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Stack(
+        children: [
+          Center(
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: Container(
+                width: 60,
+                height: 60,
+                margin: EdgeInsets.only(top: 10),
+                decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black38,
+                          blurRadius: 15.0,
+                          offset: Offset(0.0, 0.75))
+                    ],
+                    image: DecorationImage(
+                        image: NetworkImage(
+                          image,
+                        ),
+                        fit: BoxFit.cover),
+                    borderRadius: BorderRadius.all(Radius.circular(10))),
+              ),
+            ),
+          ),
+          isActive
+              ? Positioned(
+                  top: 30,
+                  child: Container(
+                    height: 20,
+                    width: 6,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(5),
+                          topRight: Radius.circular(5),
+                        )),
+                  ),
+                )
+              : Container()
+        ],
+      ),
+    );
+  }
+}
+
+class PhotoUserMeeting extends StatelessWidget {
+  final String image;
+  final String name;
+  PhotoUserMeeting({this.image, this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -754,8 +913,7 @@ class FotoUserPotrait extends StatelessWidget {
             decoration: BoxDecoration(
                 color: Colors.transparent,
                 image: DecorationImage(
-                    image: NetworkImage(
-                        "https://avatars2.githubusercontent.com/u/29952508?s=460&u=622321f493deddbb578e7837dc49602402f0be9e&v=4")),
+                    image: NetworkImage(image), fit: BoxFit.cover),
                 border: Border.all(color: Colors.white, width: 3),
                 borderRadius: BorderRadius.circular(6)),
           ),
@@ -763,7 +921,7 @@ class FotoUserPotrait extends StatelessWidget {
             height: 5,
           ),
           Text(
-            "Márcio",
+            name ?? "",
             style: TextStyle(color: Colors.white),
           )
         ],
@@ -831,7 +989,14 @@ class UserPhotoBorderGradient extends StatelessWidget {
   final bool isGradient;
   final Color firstColor;
   final Color secondColor;
-  UserPhotoBorderGradient({this.isGradient, this.firstColor, this.secondColor});
+  final String photo;
+  final String name;
+  UserPhotoBorderGradient(
+      {this.isGradient,
+      this.firstColor,
+      this.secondColor,
+      this.name,
+      this.photo});
 
   @override
   Widget build(BuildContext context) {
@@ -854,8 +1019,7 @@ class UserPhotoBorderGradient extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Color(0xFFD6E4ED),
                 image: DecorationImage(
-                  image: NetworkImage(
-                      "https://avatars2.githubusercontent.com/u/29952508?s=460&u=622321f493deddbb578e7837dc49602402f0be9e&v=4"),
+                  image: NetworkImage(photo),
                 ),
                 borderRadius: BorderRadius.all(
                   Radius.circular(50),
@@ -864,7 +1028,7 @@ class UserPhotoBorderGradient extends StatelessWidget {
             ),
           ),
           Text(
-            "Márcio",
+            name ?? "",
             style: TextStyle(color: isGradient ? secondColor : Colors.grey),
           )
         ],
@@ -874,36 +1038,40 @@ class UserPhotoBorderGradient extends StatelessWidget {
 }
 
 class MenuDarkTile extends StatelessWidget {
-  const MenuDarkTile({this.active, this.icon, this.title});
+  const MenuDarkTile({this.active, this.icon, this.title, this.onTap});
   final bool active;
   final IconData icon;
   final String title;
+  final Function onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 5, horizontal: 25),
-      padding: EdgeInsets.only(top: 12, bottom: 12, left: 25),
-      decoration: BoxDecoration(
-          color: active ? Color(0xFF0F1736) : Colors.transparent,
-          borderRadius: BorderRadius.circular(10)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Icon(
-            icon,
-            color: active ? Color(0xFF37D2F8) : Colors.white24,
-            size: 18,
-          ),
-          SizedBox(
-            width: 10,
-          ),
-          Text(
-            title ?? "",
-            style: TextStyle(
-                color: active ? Colors.white : Colors.white24, fontSize: 12),
-          )
-        ],
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 5, horizontal: 25),
+        padding: EdgeInsets.only(top: 12, bottom: 12, left: 25),
+        decoration: BoxDecoration(
+            color: active ? Color(0xFF0F1736) : Colors.transparent,
+            borderRadius: BorderRadius.circular(10)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Icon(
+              icon,
+              color: active ? Color(0xFF37D2F8) : Colors.white24,
+              size: 18,
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Text(
+              title ?? "",
+              style: TextStyle(
+                  color: active ? Colors.white : Colors.white24, fontSize: 12),
+            )
+          ],
+        ),
       ),
     );
   }
