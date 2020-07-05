@@ -1,4 +1,4 @@
-package com.example.libra_coffe_flutter
+package com.example.merchant_pos_desktop_flutter
 
 import io.flutter.embedding.android.FlutterActivity
 
