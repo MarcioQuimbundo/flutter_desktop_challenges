@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zoom_desktop_flutter/src/ui/home/home_page.dart';
+import 'src/ui/home/home_page.dart';
 
 void main() {
   runApp(MyApp());
