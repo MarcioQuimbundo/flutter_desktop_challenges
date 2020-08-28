@@ -6,7 +6,8 @@
 [![Twitter Follow](https://img.shields.io/twitter/follow/marcioquimbundo?style=social)](https://twitter.com/marcioquimbundo)
 
 ## Challenges:
-<img  height="480px" style="margin-right:10px;" src="merchant_pos_desktop_flutter/assets/screenshot/0.PNG">
 <img style="margin-right:10px;" src="zoom_desktop_flutter/assets/zoom.gif" />
+
+<img  height="480px" style="margin-right:10px;" src="merchant_pos_desktop_flutter/assets/screenshot/0.PNG">
 
 
